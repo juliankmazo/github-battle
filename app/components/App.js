@@ -1,12 +1,13 @@
 import {
   BrowserRouter as Router,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
-import React from 'react';
-import Popular from './Popular';
-import Nav from './Nav';
-import Home from './Home';
 import Battle from './Battle';
+import Home from './Home';
+import Nav from './Nav';
+import Popular from './Popular';
+import React from 'react';
 
 class App extends React.Component {
   render() {
@@ -14,9 +15,14 @@ class App extends React.Component {
       <Router>
         <div className='container'>
           <Nav />
-          <Route exact path='/' component={ Home } />
-          <Route exact path='/battle' component={ Battle } />
-          <Route path='/popular' component={ Popular } />
+          <Switch>
+            <Route exact path='/' component={ Home } />
+            <Route exact path='/battle' component={ Battle } />
+            <Route path='/popular' component={ Popular } />
+            <Route render={() => {
+              return <p>Not found!</p>;
+             }} />
+          </Switch>
         </div>
       </Router>
     );
