@@ -1,6 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+function PlayerPreview (props) {
+  return (
+    <div>
+      <div className="column">
+        <img
+          className='avatar'
+          src={ props.avatar }
+          alt={ `Avatar for ${props.username}` } />
+
+        <h2 className='username'>@{ props.username }</h2>
+      </div>
+
+      <button
+        onClick={ props.onReset.bind(null, props.id) }
+        className="reset">
+        Reset
+      </button>
+    </div>
+  );
+}
+
+PlayerPreview.propTypes = {
+  avatar: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  onReset: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired
+};
+
 class PlayerInput extends React.Component {
   constructor (props) {
     super(props);
